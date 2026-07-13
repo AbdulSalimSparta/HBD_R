@@ -984,6 +984,18 @@ body {
   transition: transform var(--duration-fast) var(--ease-spring), opacity var(--duration-medium);
 }
 
+.wax-seal::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  right: -30px;
+  bottom: -30px;
+  border-radius: 50%;
+  pointer-events: auto;
+  background: transparent;
+}
+
 .wax-seal:hover {
   transform: scale(1.1);
 }

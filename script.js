@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isDragging: false,
     dragStartY: 0,
     dragStartVal: 0,
-    triggerDistance: 380 // Length past which curtains trigger
+    triggerDistance: 310 // Length past which curtains trigger (reduced for easy mobile pull)
   };
 
   function updateRibbonPath(yVal) {
@@ -409,13 +409,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let rawTarget = ribbonPhysics.dragStartVal + deltaY;
     if (rawTarget < 0) rawTarget = 0;
     
-    if (rawTarget > ribbonPhysics.yBase) {
-      // Heavy pull scaling
-      const overshoot = rawTarget - ribbonPhysics.yBase;
-      ribbonPhysics.yCurrent = ribbonPhysics.yBase + Math.pow(overshoot, 0.88);
-    } else {
-      ribbonPhysics.yCurrent = rawTarget;
-    }
+    // Direct 1:1 drag tracking (no heavy resistive scaling for fluid mobile response)
+    ribbonPhysics.yCurrent = Math.min(rawTarget, 340);
 
     updateRibbonPath(ribbonPhysics.yCurrent);
 

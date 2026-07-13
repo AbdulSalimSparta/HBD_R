@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Royal Birthday Celebration</title>
+  <!-- Preconnect to fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Light Blobs -->
+  <div class="light-blob blob-1"></div>
+  <div class="light-blob blob-2"></div>
+  <div class="light-blob blob-3"></div>
+
+  <!-- Background Cherry Blossom Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- Premium Global Audio Control -->
+  <div class="audio-control-container">
+    <button id="audio-toggle" aria-label="Toggle Background Music">
+      <svg class="audio-icon playing" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.01,19.86 21,16.28 21,12C21,7.72 18.01,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+      </svg>
+      <svg class="audio-icon muted hidden" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M12,4L7,9H3V15H7L12,20V4M16.5,12C16.5,10.23 15.5,8.71 14,7.97V11.1L16.45,13.55C16.48,13.05 16.5,12.53 16.5,12M19,12C19,12.9 18.82,13.77 18.47,14.56L19.97,16.06C20.62,14.85 21,13.47 21,12C21,7.72 18.01,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.52C15.58,18.04 14.83,18.44 14,18.66V20.72C15.38,20.44 16.63,19.79 17.66,18.9L20.73,21.97L22,20.7L4.27,3Z" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- STAGE 1: LOADING SCREEN -->
+  <section id="loading-screen" class="stage-container active">
+    <div class="glass-card loading-card">
+      <div class="luxury-spinner-container">
+        <div class="spinner-ring outer-ring"></div>
+        <div class="spinner-ring inner-ring"></div>
+        <div class="spinner-core"></div>
+      </div>
+      <h2 class="loading-title">Preparing a little surprise</h2>
+      <p class="loading-subtitle">Crafting memories with love</p>
+    </div>
+  </section>
+
+  <!-- STAGE 2: CAT WELCOME SCREEN & RIBBON PULL -->
+  <section id="cat-screen" class="stage-container">
+    <!-- Interactive Hanging Ribbon Container -->
+    <div id="ribbon-container">
+      <svg id="ribbon-svg" viewBox="0 0 100 600" preserveAspectRatio="none">
+        <path id="ribbon-path" d="M 50 0 L 50 250" stroke="url(#ribbon-grad)" stroke-width="6" fill="none" stroke-linecap="round" />
+        <defs>
+          <linearGradient id="ribbon-grad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#d63384" />
+            <stop offset="50%" stop-color="#ff66a3" />
+            <stop offset="100%" stop-color="#d63384" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div id="ribbon-handle" class="ribbon-handle">
+        <div class="gold-ring">
+          <div class="ring-glint"></div>
+        </div>
+        <div class="bow-icon">🎀</div>
+        <span class="pull-text">PULL DOWN</span>
+      </div>
+    </div>
+
+    <div class="cat-wrapper">
+      <!-- Speech Bubble -->
+      <div id="cat-bubble" class="cat-bubble">
+        <p class="bubble-text line-1">Hello there! 👋</p>
+        <p class="bubble-text line-2">I have something incredibly special for you today.</p>
+        <p class="bubble-text line-3">Pull the golden ribbon to reveal it...</p>
+      </div>
+
+      <!-- Crisp Vector SVG Cat (White and adorable, fully rigged for animations) -->
+      <div id="vector-cat" class="vector-cat">
+        <svg viewBox="0 0 200 240" width="100%" height="100%">
+          <!-- Tail -->
+          <path class="cat-tail" d="M 130 180 Q 170 190 160 140 Q 150 100 175 90" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" />
+          
+          <!-- Back Paws -->
+          <ellipse class="cat-paw back-paw-l" cx="75" cy="205" rx="12" ry="7" fill="#ffffff" />
+          <ellipse class="cat-paw back-paw-r" cx="125" cy="205" rx="12" ry="7" fill="#ffffff" />
+
+          <!-- Body -->
+          <path class="cat-body" d="M 60 140 C 50 170 65 200 70 205 C 100 210 120 208 130 205 C 135 200 150 170 140 140 C 130 115 70 115 60 140 Z" fill="#ffffff" />
+          
+          <!-- Belly (Soft Cream Pink Accent) -->
+          <ellipse cx="100" cy="165" rx="28" ry="22" fill="#fff5f6" />
+
+          <!-- Front Left Paw -->
+          <ellipse class="cat-paw front-paw-l" cx="80" cy="200" rx="9" ry="12" fill="#ffffff" />
+          
+          <!-- Front Right Paw (Waving Arm & Paw) -->
+          <g class="cat-waving-arm">
+            <!-- Arm segment -->
+            <path d="M 125 150 Q 145 140 145 110" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" />
+            <!-- Paw -->
+            <circle cx="145" cy="105" r="9" fill="#ffffff" />
+            <!-- Pink Paw Pad -->
+            <circle cx="145" cy="105" r="5" fill="#ffb7c5" />
+            <circle cx="138" cy="99" r="2" fill="#ffb7c5" />
+            <circle cx="145" cy="96" r="2" fill="#ffb7c5" />
+            <circle cx="152" cy="99" r="2" fill="#ffb7c5" />
+          </g>
+
+          <!-- Head Group (Ears, Face, Whiskers) -->
+          <g class="cat-head">
+            <!-- Ears -->
+            <path class="cat-ear-l" d="M 65 75 L 45 40 L 80 55 Z" fill="#ffffff" />
+            <path class="cat-ear-l-inner" d="M 62 70 L 50 45 L 73 56 Z" fill="#ffccd5" />
+            
+            <path class="cat-ear-r" d="M 135 75 L 155 40 L 120 55 Z" fill="#ffffff" />
+            <path class="cat-ear-r-inner" d="M 138 70 L 150 45 L 127 56 Z" fill="#ffccd5" />
+
+            <!-- Head Base Shape -->
+            <ellipse cx="100" cy="90" rx="46" ry="38" fill="#ffffff" />
+
+            <!-- Eyes (Blinking Group) -->
+            <g class="cat-eye eye-l">
+              <circle cx="82" cy="85" r="5.5" fill="#333333" />
+              <circle cx="80" cy="83" r="2" fill="#ffffff" /> <!-- Glint -->
+              <path class="eye-lid closed-lid" d="M 75 85 Q 82 85 89 85" stroke="#ffffff" stroke-width="6" fill="none" />
+            </g>
+            <g class="cat-eye eye-r">
+              <circle cx="118" cy="85" r="5.5" fill="#333333" />
+              <circle cx="116" cy="83" r="2" fill="#ffffff" /> <!-- Glint -->
+              <path class="eye-lid closed-lid" d="M 111 85 Q 118 85 125 85" stroke="#ffffff" stroke-width="6" fill="none" />
+            </g>
+
+            <!-- Rosy Cheeks -->
+            <ellipse cx="70" cy="95" rx="7" ry="4" fill="#ffccd5" opacity="0.7" />
+            <ellipse cx="130" cy="95" rx="7" ry="4" fill="#ffccd5" opacity="0.7" />
+
+            <!-- Nose & Mouth -->
+            <path d="M 100 93 L 97 91 Q 100 89 103 91 Z" fill="#ffccd5" />
+            <path d="M 100 93 Q 97 97 94 95 M 100 93 Q 103 97 106 95" fill="none" stroke="#333333" stroke-width="1.5" stroke-linecap="round" />
+
+            <!-- Whiskers -->
+            <line x1="55" y1="94" x2="35" y2="92" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="53" y1="99" x2="33" y2="100" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round" />
+            
+            <line x1="145" y1="94" x2="165" y2="92" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="147" y1="99" x2="167" y2="100" stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 3: CINEMATIC CURTAIN OVERLAY -->
+  <div id="curtain-overlay">
+    <!-- Left Curtain Segment with vertical velvet folds -->
+    <div class="curtain-half curtain-left">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M 0 0 L 100 0 C 85 20 95 50 80 80 C 85 90 90 100 0 100 Z" fill="url(#velvet-grad-l)" />
+        <path d="M 0 0 C 20 20 15 50 25 80 C 20 90 10 100 0 100 Z" fill="rgba(0,0,0,0.15)" />
+        <path d="M 0 0 C 50 15 45 45 55 75 C 50 85 30 100 0 100 Z" fill="rgba(0,0,0,0.1)" />
+        <path d="M 0 0 C 75 10 70 40 80 70 C 75 80 50 100 0 100 Z" fill="rgba(0,0,0,0.05)" />
+        <defs>
+          <linearGradient id="velvet-grad-l" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#4a0e2e" />
+            <stop offset="35%" stop-color="#b82e70" />
+            <stop offset="70%" stop-color="#d63384" />
+            <stop offset="85%" stop-color="#ff66a3" />
+            <stop offset="100%" stop-color="#8a1a52" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <!-- Right Curtain Segment -->
+    <div class="curtain-half curtain-right">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M 100 0 L 0 0 C 15 20 5 50 20 80 C 15 90 10 100 100 100 Z" fill="url(#velvet-grad-r)" />
+        <path d="M 100 0 C 80 20 85 50 75 80 C 80 90 90 100 100 100 Z" fill="rgba(0,0,0,0.15)" />
+        <path d="M 100 0 C 50 15 55 45 45 75 C 50 85 70 100 100 100 Z" fill="rgba(0,0,0,0.1)" />
+        <path d="M 100 0 C 25 10 30 40 20 70 C 25 80 50 100 100 100 Z" fill="rgba(0,0,0,0.05)" />
+        <defs>
+          <linearGradient id="velvet-grad-r" x1="1" y1="0" x2="0" y2="0">
+            <stop offset="0%" stop-color="#4a0e2e" />
+            <stop offset="35%" stop-color="#b82e70" />
+            <stop offset="70%" stop-color="#d63384" />
+            <stop offset="85%" stop-color="#ff66a3" />
+            <stop offset="100%" stop-color="#8a1a52" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <!-- MAIN SCROLLABLE APP (Becomes visible and active after curtain opens) -->
+  <main id="main-content" class="hidden">
+
+    <!-- STAGE 4: HAPPY BIRTHDAY HERO SECTION -->
+    <section id="hero-section" class="scroll-section">
+      <div class="hero-wrapper parallax-element" data-speed="-0.15">
+        <div class="luxury-badge">ASSALAMU ALAIKUM</div>
+        <h1 class="hero-title tracking-in-expand">Happy Birthday</h1>
+        <div class="name-container">
+          <h2 id="birthday-name" class="hero-name">Reshma❤️</h2>
+        </div>
+        <p class="hero-subtitle">May Allah bless your life with happiness, peace, success and endless barakah.</p>
+        
+        <div class="hero-scroll-indicator">
+          <span class="scroll-text">SCROLL TO UNWRAP</span>
+          <div class="gold-arrow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 5: THE ENVELOPE & LETTER SECTION -->
+    <section id="envelope-section" class="scroll-section">
+      <div class="section-title-wrap reveal-on-scroll">
+        <span class="section-tag">A PERSONAL MEMORANDUM</span>
+        <h2 class="section-title">The Sealed Letter</h2>
+      </div>
+
+      <!-- 3D Interactive Envelope Scene -->
+      <div class="envelope-scene reveal-on-scroll">
+        <div id="envelope-container" class="envelope-container">
+          <!-- Back of the envelope -->
+          <div class="envelope-back"></div>
+          
+          <!-- The Letter Inside -->
+          <div id="letter-sheet" class="letter-sheet">
+            <div class="letter-content-wrapper">
+              <div class="letter-gold-border"></div>
+              <div class="letter-body">
+                <p class="letter-salutation">Dearest Reshma,</p>
+                <p class="letter-text-paragraph typewriter-target">On this beautiful and blessed day, I want to send you my warmest prayers. You deserve a life filled with laughter, serenity, and magnificent milestones. May every step you take lead to success, and may every prayer you whisper be answered with barakah. Thank you for bringing light and joy to everyone around you.</p>
+                <!-- <p class="letter-text-paragraph"></p> -->
+                <p class="letter-signature-block">With love, prayers & best wishes,<br><strong class="signature-name">Abdul</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Front Left Flap -->
+          <div class="envelope-flap-left"></div>
+          <!-- Front Right Flap -->
+          <div class="envelope-flap-right"></div>
+          <!-- Front Bottom Flap -->
+          <div class="envelope-flap-bottom"></div>
+          <!-- Front Top Flap (closes/opens) -->
+          <div id="envelope-flap-top" class="envelope-flap-top">
+            <div class="flap-gold-line"></div>
+          </div>
+
+          <!-- Interactive Golden Wax Seal -->
+          <div id="wax-seal" class="wax-seal">
+            <div class="seal-outer">
+              <div class="seal-inner">
+                <span class="seal-initial">A</span>
+              </div>
+            </div>
+            <div class="seal-glow"></div>
+            <span class="seal-hint">Click Seal to Open</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Envelope Control Panel -->
+      <div class="envelope-controls reveal-on-scroll">
+        <p class="envelope-status-message">Press the wax seal to break it and open the letter.</p>
+      </div>
+    </section>
+
+
+
+    <!-- STAGE 7: ISLAMIC DUA SECTION -->
+    <section id="dua-section" class="scroll-section">
+      <div class="dua-wrapper reveal-on-scroll">
+        <!-- Subtle Mosque Silhouette Vector Overlay -->
+        <div class="mosque-silhouette">
+          <svg viewBox="0 0 1000 350" preserveAspectRatio="none" width="100%" height="100%">
+            <path d="M 0 350 L 0 320 Q 30 320 50 280 L 50 160 Q 50 120 70 120 Q 90 120 90 160 L 90 280 Q 110 320 140 320 L 170 320 Q 190 320 200 290 Q 200 100 230 100 Q 260 100 260 290 Q 270 320 290 320 L 320 320 C 330 320 340 310 350 250 L 350 50 Q 350 10 370 10 Q 390 10 390 50 L 390 250 C 400 310 410 320 420 320 L 450 320 Q 470 320 480 270 C 480 180 500 130 525 130 C 550 130 570 180 570 270 Q 580 320 600 320 L 630 320 C 640 320 650 310 660 250 L 660 30 Q 660 0 675 0 Q 690 0 690 30 L 690 250 C 700 310 710 320 720 320 L 760 320 Q 780 320 790 290 Q 790 90 820 90 Q 850 90 850 290 Q 860 320 880 320 L 910 320 Q 930 320 950 280 L 950 160 Q 950 120 970 120 Q 990 120 990 160 L 990 280 Q 1010 320 1040 320 L 1000 350 Z" fill="rgba(214, 51, 132, 0.04)" />
+            <path d="M 0 350 L 0 335 Q 20 335 35 305 L 35 200 Q 35 170 50 170 Q 65 170 65 200 L 65 305 Q 80 335 100 335 L 140 335 Q 160 335 170 285 Q 170 140 195 140 Q 220 140 220 285 Q 230 335 250 335 L 290 335 C 300 335 310 320 320 270 L 320 120 Q 320 90 335 90 Q 350 90 350 120 L 350 270 C 360 320 370 335 380 335 L 430 335 Q 450 335 460 295 Q 460 200 485 200 Q 510 200 510 295 Q 520 335 540 335 L 590 335 C 600 335 610 320 620 270 L 620 100 Q 620 70 635 70 Q 650 70 650 100 L 650 270 C 660 320 670 335 680 335 L 730 335 Q 750 335 760 300 Q 760 150 785 150 Q 810 150 810 300 Q 820 335 840 335 L 880 335 Q 900 335 915 305 L 915 200 Q 915 170 930 170 Q 945 170 945 200 L 945 305 Q 960 335 980 335 L 1000 350 Z" fill="rgba(214, 51, 132, 0.02)" />
+          </svg>
+        </div>
+
+        <div class="dua-content">
+          <div class="dua-ornament-top">✨ 🌸 ✨</div>
+          <h3 class="dua-header">A Sincere Supplication</h3>
+          
+          <blockquote class="dua-text">
+            "May Allah bless you with happiness,<br>
+            protect you, guide you,<br>
+            grant you success,<br>
+            and fill your life with barakah."
+          </blockquote>
+          
+          <div class="dua-amen">In Sha Allah</div>
+          <div class="dua-ornament-bottom">✧ ✦ ✧</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 8: FINAL GOODBYE SCREEN -->
+    <section id="goodbye-section" class="scroll-section">
+      <div class="goodbye-card glass-card reveal-on-scroll">
+        <!-- Goodbye Waving Cat -->
+        <div class="goodbye-cat-container">
+          <div id="vector-cat-goodbye" class="vector-cat mini">
+            <!-- SVG cloned or injected dynamically in JS, or we replicate a simplified markup -->
+            <svg viewBox="0 0 200 240" width="100%" height="100%">
+              <path class="cat-tail wagging" d="M 130 180 Q 170 190 160 140 Q 150 100 175 90" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" />
+              <ellipse class="cat-paw" cx="75" cy="205" rx="12" ry="7" fill="#ffffff" />
+              <ellipse class="cat-paw" cx="125" cy="205" rx="12" ry="7" fill="#ffffff" />
+              <path class="cat-body" d="M 60 140 C 50 170 65 200 70 205 C 100 210 120 208 130 205 C 135 200 150 170 140 140 C 130 115 70 115 60 140 Z" fill="#ffffff" />
+              <ellipse cx="100" cy="165" rx="28" ry="22" fill="#fff5f6" />
+              <ellipse class="cat-paw" cx="80" cy="200" rx="9" ry="12" fill="#ffffff" />
+              <g class="cat-waving-arm wave-active">
+                <path d="M 125 150 Q 145 140 145 110" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" />
+                <circle cx="145" cy="105" r="9" fill="#ffffff" />
+                <circle cx="145" cy="105" r="5" fill="#ffb7c5" />
+              </g>
+              <g class="cat-head bobbing">
+                <path d="M 65 75 L 45 40 L 80 55 Z" fill="#ffffff" />
+                <path d="M 62 70 L 50 45 L 73 56 Z" fill="#ffccd5" />
+                <path d="M 135 75 L 155 40 L 120 55 Z" fill="#ffffff" />
+                <path d="M 138 70 L 150 45 L 127 56 Z" fill="#ffccd5" />
+                <ellipse cx="100" cy="90" rx="46" ry="38" fill="#ffffff" />
+                <circle cx="82" cy="85" r="5.5" fill="#333333" />
+                <circle cx="80" cy="83" r="2" fill="#ffffff" />
+                <circle cx="118" cy="85" r="5.5" fill="#333333" />
+                <circle cx="116" cy="83" r="2" fill="#ffffff" />
+                <ellipse cx="70" cy="95" rx="7" ry="4" fill="#ffccd5" opacity="0.7" />
+                <ellipse cx="130" cy="95" rx="7" ry="4" fill="#ffccd5" opacity="0.7" />
+                <path d="M 100 93 L 97 91 Q 100 89 103 91 Z" fill="#ffccd5" />
+                <path d="M 100 93 Q 97 97 94 95 M 100 93 Q 103 97 106 95" fill="none" stroke="#333333" stroke-width="1.5" stroke-linecap="round" />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <h3 class="goodbye-title">Happy Birthday once again ❤️</h3>
+        <p class="goodbye-message">Have a wonderful and blessed year ahead.</p>
+        <p class="goodbye-blessing">May Allah always protect you and guide your steps.</p>
+        
+        <div class="signature-line">
+          <span>With all my respect,</span>
+          <h4 class="final-signature">Abdul Saleem</h4>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

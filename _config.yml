@@ -1,0 +1,8 @@
+title: "Reshma's bday"
+description: "A premium luxury interactive birthday website for Reshma"
+theme: jekyll-theme-minimal
+show_downloads: false
+google_analytics:
+exclude:
+  - README.md
+  - LICENSE
